@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
-import {Modal,Button, Row, Col, Form,Image} from 'react-bootstrap';
+import {Modal,Button, Row, Col, Form} from 'react-bootstrap';
 
-export class AddPerModal extends Component{
+export class EditPerModal extends Component{
     constructor(props){
         super(props);
         this.state={ven:[]};
@@ -19,20 +19,19 @@ export class AddPerModal extends Component{
     handleSubmit(event){
         event.preventDefault();
         fetch(process.env.REACT_APP_API+'Personi',{
-            method:'POST',
+            method:'PUT',
             headers:{
                 'Accept':'application/json',
                 'Content-Type':'application/json'
             },
             body:JSON.stringify({
-                PersoniId:null,
+                personiId:event.target.personiId.value,
                 Emri:event.target.Emri.value,
                 Mbiemri:event.target.Mbiemri.value,
                 Nr_Leternjoftimit:event.target.Nr_Leternjoftimit.value,
                 Vendbanimi:event.target.Vendbanimi.value,
                 DataLindjes:event.target.DataLindjes.value,
-                DataVaksinimit:event.target.DataVaksinimit.value,
-                VendiVaksinimit:event.target.VendiVaksinimit.value,
+                VendiVaksinimit:event.target.VendiVaksinimit.value
             })
         })
         .then(res=>res.json())
@@ -55,7 +54,7 @@ centered
 >
     <Modal.Header clooseButton>
         <Modal.Title id="contained-modal-title-vcenter">
-            Shto Personin
+            Modifiko Personin
         </Modal.Title>
     </Modal.Header>
     <Modal.Body>
@@ -63,28 +62,39 @@ centered
         <Row>
             <Col sm={6}>
                 <Form onSubmit={this.handleSubmit}>
+
+                <Form.Group controlId="personiId">
+                        <Form.Label>personiId</Form.Label>
+                        <Form.Control type="text" name="personiId" required disabled 
+                        defaultValue={this.props.PerId}/>
+                    </Form.Group>
+
                     <Form.Group controlId="Emri">
                         <Form.Label>Emri</Form.Label>
                         <Form.Control type="text" name="Emri" required 
-                        placeholder="Emri i Personit"/>
+                        defaultValue={this.props.PerEmri}
+                        />
                     </Form.Group>
 
                     <Form.Group controlId="Mbiemri">
                         <Form.Label>Mbiemri</Form.Label>
                         <Form.Control type="text" name="Mbiemri" required 
-                        placeholder="Mbiemri i Personit"/>
+                        defaultValue={this.props.PerMbiemri}
+                        />
                     </Form.Group>
 
                     <Form.Group controlId="Nr_Leternjoftimit">
                         <Form.Label>Nr_Leternjoftimit</Form.Label>
-                        <Form.Control type="text" name="Nr_Leternjoftimit" required 
-                        placeholder="Nr_Leternjoftimit"/>
+                        <Form.Control type="text" name="Nr_Leternjoftimit" required
+                        defaultValue={this.props.PerNrLeternjoftimit}
+                        />
                     </Form.Group>
 
                     <Form.Group controlId="Vendbanimi">
                         <Form.Label>Vendbanimi</Form.Label>
                         <Form.Control type="text" name="Vendbanimi" required 
-                        placeholder="Vendbanimi"/>
+                        defaultValue={this.props.PerVendbanimi}
+                        />
                     </Form.Group>
 
                     <Form.Group controlId="DataLindjes">
@@ -93,7 +103,8 @@ centered
                         type="date"
                         name="DataLindjes"
                         required
-                        placeholder="DataLindjes"
+                        
+                        defaultValue={this.props.PerDataLindjes}
                         />
                     </Form.Group>
 
@@ -103,21 +114,20 @@ centered
                         type="date"
                         name="DataVaksinimit"
                         required
-                        placeholder="DataVaksinimit"
+                        defaultValue={this.props.PerDataVaksinimit}
                         />
                     </Form.Group>
 
-                    <Form.Group controlId="Vendi">
-                        <Form.Label>Vendi i Vaksinimit</Form.Label>
-                        <Form.Control as="select">
-                        {this.state.ven.map(ven=>
-                            <option key={ven.VendiId}>{ven.Emri}</option>)}
-                        </Form.Control>
+                    <Form.Group controlId="VendiVaksinimit">
+                        <Form.Label>Vendi</Form.Label>
+                        <Form.Control type="text" name="Vendi" required 
+                        defaultValue={this.props.PerVendiVaksinimit}
+                        />
                     </Form.Group>
 
                     <Form.Group>
                         <Button variant="primary" type="submit">
-                            Shto Personin
+                        Modifiko Personin
                         </Button>
                     </Form.Group>
                 </Form>

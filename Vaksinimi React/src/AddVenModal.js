@@ -16,7 +16,6 @@ export class AddVenModal extends Component{
                 'Content-Type':'application/json'
             },
             body:JSON.stringify({
-                VendiId:null,
                 Emri:event.target.Emri.value
             })
         })
@@ -51,7 +50,7 @@ centered
                     <Form.Group controlId="Emri">
                         <Form.Label>Emri i Vendit</Form.Label>
                         <Form.Control type="text" name="Emri" required 
-                        placeholder="Emri i Vendit Ku Jeni Vaksinuar"/>
+                        placeholder="Vendi"/>
                     </Form.Group>
 
                     <Form.Group>

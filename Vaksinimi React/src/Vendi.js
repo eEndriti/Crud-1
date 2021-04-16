@@ -42,11 +42,11 @@ export class Vendi extends Component{
 
                 return(
             <div>
-                <Table className="mt-4" striped bordered hover size="sm" >
+                <Table className="mt-4 bg-light text-dark" striped bordered hover size="sm" >
                         <thead>
                             <tr>
-                            <th>Numri Rendor i Vendit</th>
-                            <th>Emri i Vendit</th>
+                            <th>ID e Vendit</th>
+                            <th>Vendi</th>
                             <th>Opsionet</th>
                             </tr>
                         </thead>                       
@@ -64,7 +64,7 @@ export class Vendi extends Component{
                                             </Button>
                                             <Button className="mr-2" variant="danger"
                                                  onClick={()=>this.deleteVen(ven.VendiId)}>
-                                                     Delete
+                                                     Fshij
                                             </Button>
                                             <EditVenModal show={this.state.editModalShow}
                                                  onHide={editModalClose}

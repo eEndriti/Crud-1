@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
-import {Modal,Button, Row, Col, Form,Image} from 'react-bootstrap';
+import {Modal,Button, Row, Col, Form} from 'react-bootstrap';
 
-export class EditPerModal extends Component{
+export class AddPerModal extends Component{
     constructor(props){
         super(props);
         this.state={ven:[]};
@@ -25,14 +25,12 @@ export class EditPerModal extends Component{
                 'Content-Type':'application/json'
             },
             body:JSON.stringify({
-                PersoniId:null,
                 Emri:event.target.Emri.value,
                 Mbiemri:event.target.Mbiemri.value,
                 Nr_Leternjoftimit:event.target.Nr_Leternjoftimit.value,
                 Vendbanimi:event.target.Vendbanimi.value,
-                DataLindjes:event.target.DataLindjes.value,
-                DataVaksinimit:event.target.DataVaksinimit.value,
-                VendiVaksinimit:event.target.VendiVaksinimit.value,
+                VendiVaksinimit:event.target.VendiVaksinimit.value
+             
             })
         })
         .then(res=>res.json())
@@ -63,18 +61,30 @@ centered
         <Row>
             <Col sm={6}>
                 <Form onSubmit={this.handleSubmit}>
+                
+
                     <Form.Group controlId="Emri">
                         <Form.Label>Emri</Form.Label>
                         <Form.Control type="text" name="Emri" required 
                         placeholder="Emri i Personit"/>
                     </Form.Group>
 
-                    <Form.Group controlId="Vendi">
-                        <Form.Label>Vendi</Form.Label>
-                        <Form.Control as="select">
-                        {this.state.ven.map(ven=>
-                            <option key={ven.VendiId}>{ven.Emri}</option>)}
-                        </Form.Control>
+                    <Form.Group controlId="Mbiemri">
+                        <Form.Label>Mbiemri</Form.Label>
+                        <Form.Control type="text" name="Mbiemri" required 
+                        placeholder="Mbiemri i Personit"/>
+                    </Form.Group>
+
+                    <Form.Group controlId="Nr_Leternjoftimit">
+                        <Form.Label>Nr_Leternjoftimit</Form.Label>
+                        <Form.Control type="text" name="Nr_Leternjoftimit" required 
+                        placeholder="Nr_Leternjoftimit"/>
+                    </Form.Group>
+
+                    <Form.Group controlId="Vendbanimi">
+                        <Form.Label>Vendbanimi</Form.Label>
+                        <Form.Control type="text" name="Vendbanimi" required 
+                        placeholder="Vendbanimi"/>
                     </Form.Group>
 
                     <Form.Group controlId="DataLindjes">
@@ -85,8 +95,22 @@ centered
                         required
                         placeholder="DataLindjes"
                         />
-                       
-                        
+                    </Form.Group>
+
+                    <Form.Group controlId="DataVaksinimit">
+                        <Form.Label>DataVaksinimit</Form.Label>
+                        <Form.Control 
+                        type="date"
+                        name="DataVaksinimit"
+                        required
+                        placeholder="DataVaksinimit"
+                        />
+                    </Form.Group>
+
+                    <Form.Group controlId="VendiVaksinimit">
+                        <Form.Label>Vendi</Form.Label>
+                        <Form.Control type="text" name="Vendi" required 
+                        placeholder="Vendi ku jeni vaksinuar"/>
                     </Form.Group>
 
                     <Form.Group>

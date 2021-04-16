@@ -5,7 +5,6 @@ import {Button,ButtonToolbar} from 'react-bootstrap';
 import {AddPerModal} from './AddPerModal';
 import {EditPerModal} from './EditPerModal';
 
-
 export class Personi extends Component{
     constructor(props){
         super(props);
@@ -43,9 +42,10 @@ export class Personi extends Component{
 
     return(      
             <div>    
-             <Table className="mt-4" striped bordered hover size="sm" >
+             <Table className="mt-4 bg-light text-dark" striped bordered hover size="sm" >
                         <thead>
                             <tr>
+                            <th>ID e Personit</th>
                             <th>Emri</th>
                             <th>Mbiemri</th>
                             <th>Nr_Leternjoftimit</th>
@@ -59,6 +59,7 @@ export class Personi extends Component{
                         <tbody>
                             {per.map(per=>
                                     <tr key={per.PersoniId}>
+                                        <td>{per.PersoniId}</td>
                                         <td>{per.Emri}</td>
                                         <td>{per.Mbiemri}</td>
                                         <td>{per.Nr_Leternjoftimit}</td>
@@ -82,7 +83,7 @@ export class Personi extends Component{
                                             </Button>
                                             <Button className="mr-2" variant="danger"
                                                  onClick={()=>this.deletePer(per.PersoniId)}>
-                                                     Delete
+                                                     Fshij
                                             </Button>
                                             <EditPerModal show={this.state.editModalShow}
                                                  onHide={editModalClose}
